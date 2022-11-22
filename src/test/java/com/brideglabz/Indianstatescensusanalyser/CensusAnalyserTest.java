@@ -7,13 +7,20 @@ import org.testng.annotations.Test;
 public class CensusAnalyserTest<ExpectedException> {
     private static final String INDIA_CENSUS_CSV_FILE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "E:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.csv";
-    private static final String WRONG_FILE_TYPE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.csv.pdf";
-    private static final String WRONG_DELIMITER_FILE_PATH = "E:C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.csv";
+    private static final String WRONG_FILE_TYPE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.pdf";
+    private static final String WRONG_DELIMITER_FILE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.csv";
     private static final String WITHOUT_HEADER_FILE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.csv";
+
+    private static final String INDIA_CODE_CSV_FILE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCode.csv";
+    private static final String CODE_WRONG_CSV_FILE_PATH = "E:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCode.csv";
+    private static final String CODE_WRONG_FILE_TYPE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCode.pdf";
+    private static final String CODE_WRONG_DELIMITER_FILE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCode.csv";
+    private static final String CODE_WITHOUT_HEADER_FILE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCode.csv";
+
     private static CensusAnalyser censusAnalyser;
 
     @BeforeClass
-    public static void createCensusAnalyser() {
+    public static void creativenessAnalyser() {
         censusAnalyser = new CensusAnalyser();
         System.out.println("Welcome to the Indian States Census Analyser Program.. ");
     }
