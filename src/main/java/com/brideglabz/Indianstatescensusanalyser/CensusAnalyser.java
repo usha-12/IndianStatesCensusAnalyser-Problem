@@ -80,4 +80,7 @@ public class CensusAnalyser {
             }
         }
     }
+
+    public String getStateCodeWiseSortedData(String indiaCodeCsvFilePath) {
+    }
 }

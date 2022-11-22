@@ -2,7 +2,6 @@ package com.brideglabz.Indianstatescensusanalyser;
 
 public class IndiaCensusCSV {
     public String state;
-
     public int population;
 
     public int areaInSqKm;

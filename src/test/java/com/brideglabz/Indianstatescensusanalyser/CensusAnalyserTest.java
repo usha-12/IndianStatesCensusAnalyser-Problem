@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class CensusAnalyserTest<ExpectedException> {
+public class CensusAnalyserTest {
     private static final String INDIA_CENSUS_CSV_FILE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "E:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.csv";
     private static final String WRONG_FILE_TYPE_PATH = "C:\\Users\\User\\Desktop\\210_RPF\\IndianStatesCensusAnalyserProblem\\src\\main\\resources\\IndiaStateCensusData.pdf";
@@ -20,7 +20,7 @@ public class CensusAnalyserTest<ExpectedException> {
     private static CensusAnalyser censusAnalyser;
 
     @BeforeClass
-    public static void creativenessAnalyser() {
+    public static void createcensusAnalyser() {
         censusAnalyser = new CensusAnalyser();
         System.out.println("Welcome to the Indian States Census Analyser Program.. ");
     }
@@ -58,7 +58,7 @@ public class CensusAnalyserTest<ExpectedException> {
     }
 
     @Test
-    public void givenIndiaCensusData_WithWrongDelimeter_ShouldThrowException() {
+    public <ExpectedException> void givenIndiaCensusData_WithWrongDelimeter_ShouldThrowException() {
         try {
             ExpectedException exceptionRule = ExpectedException.none();
             exceptionRule.expect(CensusAnalyserException.class);
@@ -143,5 +143,15 @@ public class CensusAnalyserTest<ExpectedException> {
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void givenIndianCensusData_WhenSortedOnStateCode_ShouldReturnSortedResult() {
+        String sortedCensusData = null;
+        sortedCensusData = censusAnalyser.getStateCodeWiseSortedData(INDIA_CODE_CSV_FILE_PATH);
+        System.out.println(sortedCensusData);
+        IndiaCodeCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCodeCSV[].class);
+        Assert.assertNotEquals("AD", censusCSV[0].stateCode);
+
     }
 }

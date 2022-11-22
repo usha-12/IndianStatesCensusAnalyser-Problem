@@ -10,7 +10,6 @@ public class OpenCSVBuilder<E> implements ICSVBuilder {
     public Iterator<E> getCSVFileIterator(Reader reader, Class csvClass) throws CSVBuilderException {
         return this.getCSVBean(reader, csvClass).iterator();
     }
-
     @Override
     public List getCSVFileList(Reader reader, Class csvClass) throws CSVBuilderException {
         return this.getCSVBean(reader, csvClass).parse();
