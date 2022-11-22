@@ -3,7 +3,6 @@ package com.brideglabz.Indianstatescensusanalyser;
 public class IndiaCodeCSV {
     @CsvBindByName(column = "SrNo", required = true)
     public String srNo;
-
     @CsvBindByName(column = "State Name", required = true)
     public String stateName;
 

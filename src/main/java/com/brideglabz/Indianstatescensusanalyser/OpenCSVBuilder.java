@@ -17,7 +17,7 @@ public class OpenCSVBuilder<E> implements ICSVBuilder {
     }
     private <CsvToBean, CsvToBeanBuilder> CsvToBean<E> getCSVBean(Reader reader, Class csvClass) throws CSVBuilderException {
         try {
-            CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
+            CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder(reader);
             csvToBeanBuilder.withType(csvClass);
             csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
             return csvToBeanBuilder.build();

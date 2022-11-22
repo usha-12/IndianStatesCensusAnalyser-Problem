@@ -113,7 +113,7 @@ public class CensusAnalyserTest<ExpectedException> {
     }
 
     @Test
-    public void givenIndiaCodeData_WithWrongDelimiter_ShouldThrowException() {
+    public void givenIndiaCodeData_WithWrongDelimeter_ShouldThrowException() {
         try {
             ExpectedException exceptionRule = ExpectedException.none();
             exceptionRule.expect(CensusAnalyserException.class);
@@ -166,6 +166,18 @@ public class CensusAnalyserTest<ExpectedException> {
             sortedCensusData = censusAnalyser.getPopulousStateWiseSortedCensusData(INDIA_CENSUS_CSV_FILE_PATH);
             IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
             Assert.assertEquals("Uttar Pradesh", censusCSV[censusCSV.length - 1].state);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenIndianCensusData_WhenSortedOnPopulousDensityState_ShouldReturnSortedResult() {
+        String sortedCensusData = null;
+        try {
+            sortedCensusData = censusAnalyser.getPopulousDensityStateWiseSortedCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals("Bihar", censusCSV[censusCSV.length - 1].state);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
