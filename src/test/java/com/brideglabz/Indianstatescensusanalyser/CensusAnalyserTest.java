@@ -58,7 +58,7 @@ public class CensusAnalyserTest<ExpectedException> {
     }
 
     @Test
-    public void givenIndiaCensusData_WithWrongDelimiter_ShouldThrowException() {
+    public void givenIndiaCensusData_WithWrongDelimeter_ShouldThrowException() {
         try {
             ExpectedException exceptionRule = ExpectedException.none();
             exceptionRule.expect(CensusAnalyserException.class);
@@ -76,6 +76,72 @@ public class CensusAnalyserTest<ExpectedException> {
             censusAnalyser.loadIndiaCensusData(WITHOUT_HEADER_FILE_PATH);
         } catch (CensusAnalyserException censusAnalyserException) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_SUCH_FILE, censusAnalyserException.type);
+        }
+    }
+
+    @Test
+    public void givenIndianCodeCSVFileReturnsCorrectRecords() {
+        try {
+            int numOfRecords = censusAnalyser.loadIndiaCodeData(INDIA_CODE_CSV_FILE_PATH);
+            Assert.assertEquals(37, numOfRecords);
+        } catch (CensusAnalyserException CensusAnalyserException) {
+        }
+    }
+
+    @Test
+    public void givenIndiaCodeData_WithWrongFile_ShouldThrowException() {
+        try {
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyser.loadIndiaCodeData(CODE_WRONG_CSV_FILE_PATH);
+        } catch (CensusAnalyserException censusAnalyserException) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM,
+                    censusAnalyserException.type);
+        }
+    }
+
+    @Test
+    public void givenIndiaCodeData_WithWrongTypeFile_ShouldThrowException() {
+        try {
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyser.loadIndiaCodeData(CODE_WRONG_FILE_TYPE_PATH);
+        } catch (CensusAnalyserException censusAnalyserException) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.WRONG_FILE_TYPE, censusAnalyserException.type);
+        }
+    }
+
+    @Test
+    public void givenIndiaCodeData_WithWrongDelimeter_ShouldThrowException() {
+        try {
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyser.loadIndiaCodeData(CODE_WRONG_DELIMITER_FILE_PATH);
+        } catch (CensusAnalyserException censusAnalyserException) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_SUCH_FILE, censusAnalyserException.type);
+        }
+    }
+
+    @Test
+    public void givenIndiaCodeData_WithoutHeader_ShouldThrowException1() {
+        try {
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyser.loadIndiaCodeData(CODE_WITHOUT_HEADER_FILE_PATH);
+        } catch (CensusAnalyserException censusAnalyserException) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_SUCH_FILE, censusAnalyserException.type);
+        }
+    }
+
+    @Test
+    public void givenIndianCensusData_WhenSortedOnState_ShouldReturnSortedResult() {
+        String sortedCensusData = null;
+        try {
+            sortedCensusData = censusAnalyser.getStateWiseSortedCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals("Andhra Pradesh", censusCSV[0].state);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
         }
     }
 }
